@@ -14,24 +14,55 @@ header {
 
 main {
     padding: 1rem;
-}
-
-.products {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
 }
 
-.product {
+form {
     background-color: #fff;
+    padding: 2rem;
     border: 1px solid #ddd;
-    padding: 1rem;
-    width: calc(33% - 2rem);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
-.product h3 {
-    margin-top: 0;
+button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.error {
+    color: red;
+    margin-top: 1rem;
 }
 
 footer {
@@ -41,5 +72,5 @@ footer {
     padding: 1rem;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 100%;
 }
