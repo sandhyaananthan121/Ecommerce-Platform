@@ -19,7 +19,7 @@ SQLite setup
 
 PyCharm setup
 1. download - login - vcs clone
-   push - clone - commit and push
-   pull - git - pull
+2. push - clone - commit and push
+3. pull - git - pull
 
 
