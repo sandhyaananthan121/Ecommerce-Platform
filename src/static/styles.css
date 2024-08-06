@@ -8,10 +8,14 @@ body {
     flex-direction: column;
 }
 
-footer {
+.footer {
     margin-top: auto;
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 1rem;
+}
+
+.card {
+    margin-top: 2rem;
 }
