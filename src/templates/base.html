@@ -4,44 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}E-commerce Platform{% endblock %}</title>
+  <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* Flexbox Layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #f3f4f6; /* Tailwind's gray-100 */
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-bar {
+      max-width: 400px; /* Adjust as needed */
+      width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #333; /* Bootstrap's bg-dark */
+      color: #fff; /* Bootstrap's text-white */
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><i class="fas fa-store"></i> E-commerce Platform</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
-      </li>
-      {% if username %}
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-user"></i> {{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-      </li>
-      {% else %}
-      <li class="nav-item">
-        <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
-      </li>
-      {% endif %}
-    </ul>
+
+<nav class="bg-white-200 p-4 flex items-center justify-between">
+  <!-- Home Link -->
+  {% if request.endpoint != 'home' %}
+  <div class="hidden md:flex space-x-6">
+    <a class="text-black hover:text-muted" href="/">Home</a>
+  </div>
+  {% endif %}
+
+  <!-- Centered Search Bar -->
+  {% if request.endpoint == 'home' %}
+  <div class="flex-grow flex justify-center">
+    <input type="text" class="search-bar border p-1 border-gray-300 rounded" placeholder="Search...">
+  </div>
+  {% endif %}
+
+  <!-- Login and Sign Up Links -->
+  <div class="hidden md:flex space-x-6">
+    {% if not username %}
+    {% if request.endpoint != 'login' %}
+    <a class="text-black hover:text-muted" href="/login">Login</a>
+    {% endif %}
+    {% if request.endpoint != 'signup' %}
+    <a class="text-black hover:text-muted" href="/signup">Sign Up</a>
+    {% endif %}
+    {% else %}
+    <a class="text-black hover:text-muted" href="#">{{ username }}</a>
+    <a class="text-black hover:text-muted" href="/logout">Logout</a>
+    {% endif %}
   </div>
 </nav>
-<div class="container mt-5">
+
+<div class="container-fluid main-content pb-16">
   {% block content %}{% endblock %}
 </div>
-<footer class="footer mt-auto py-3 bg-dark">
+
+<footer class="footer fixed bottom-0 w-full bg-light m-0 p-0">
   <div class="container text-center">
-    <span class="text-muted">&copy; 2024 E-commerce Platform</span>
+    <span class="text-muted">&copy; 2024 Placata Care</span>
   </div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

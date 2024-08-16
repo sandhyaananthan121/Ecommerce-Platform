@@ -3,18 +3,84 @@
 {% block title %}Home - E-commerce Platform{% endblock %}
 
 {% block content %}
-<h1 class="text-center">Our Products</h1>
-<div class="row">
+<!-- Main Banner -->
+
+<section class="relative bg-gray-300 h-3/5 flex items-center justify-center mt-0 bg-cover" style="background-image: url('{{ url_for('static', filename='s1.jpg') }}'); background-position: center 30%;">
+    <!-- Gray overlay -->
+    <div class="absolute inset-0 bg-gray-700 opacity-50"></div>
+
+    <!-- Content over the overlay -->
+    <div class="relative z-10 text-center">
+        <h1 class="text-white text-3xl">Welcome to Placata Care</h1>
+        <p class="text-white">Shop the best products now!</p>
+    </div>
+</section>
+
+<!-- Content Section -->
+<section class="grid grid-cols-3 gap-4 p-0 pt-3">
+    <div class="relative bg-gray-300 h-64 flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ url_for('static', filename='s2.jpg') }}');">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-700 opacity-90"></div>
+        <p class="relative z-30 text-2xl text-white">Bath</p>
+    </div>
+    <div class="relative bg-gray-300 h-64 flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ url_for('static', filename='s3.webp') }}');">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-700 opacity-100"></div>
+        <p class="relative z-30 text-2xl text-white">Body</p>
+    </div>
+    <div class="relative bg-gray-300 h-64 flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ url_for('static', filename='s3.jpg') }}');">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-700 opacity-120"></div>
+        <p class="relative z-30 text-2xl text-white">Hair</p>
+    </div>
+</section>
+
+
+<!-- Products Section -->
+<section class="grid grid-cols-4  gap-4 pt-3">
     {% for product in products %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text">{{ product.description }}</p>
-                <p class="card-text"><strong>${{ "%.2f"|format(product.price) }}</strong></p>
-            </div>
+    <div class="bg-white shadow-md rounded-lg overflow-hidden h-96 flex flex-col justify-between">
+        <div class="relative h-2/3 bg-gray-200">
+            <img src="{{ url_for('static', filename='{{ product.image_filename }}') }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+        </div>
+        <div class="p-4 flex flex-col items-center text-center">
+            <h5 class="font-semibold text-lg">{{ product.name }}</h5>
+            <p class="text-gray-600">{{ product.description }}</p>
+            <p class="text-pink-500 text-lg font-bold mt-2">${{ "%.2f"|format(product.price) }}</p>
+            <button class="mt-4 bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600">
+                Add to Cart
+            </button>
         </div>
     </div>
     {% endfor %}
-</div>
+</section>
+
+
+
+<!-- Footer Links Section -->
+<section class="bg-gray-200 p-4 mt-4">
+    <div class="flex justify-between">
+        <div>
+            <p>Links</p>
+            <ul class="text-sm text-gray-600">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+            </ul>
+        </div>
+        <div>
+            <p>Links</p>
+            <ul class="text-sm text-gray-600">
+                <li><a href="#">Link 4</a></li>
+                <li><a href="#">Link 5</a></li>
+                <li><a href="#">Link 6</a></li>
+            </ul>
+        </div>
+        <div>
+            <p>Links</p>
+            <ul class="text-sm text-gray-600">
+                <li><a href="#">Link 7</a></li>
+                <li><a href="#">Link 8</a></li>
+                <li><a href="#">Link 9</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
 {% endblock %}

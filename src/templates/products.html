@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Products - E-commerce Platform{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Products</h1>
+
+<div class="container">
+    <div class="flex">
+        <!-- Filter Sidebar -->
+        <div class="w-1/4 bg-gray-100 p-4">
+            <h5 class="font-semibold mb-4">Filters</h5>
+            <form method="get" action="{{ url_for('products') }}">
+                <div class="form-group mb-4">
+                    <label for="category" class="block font-medium">Category</label>
+                    <select id="category" name="category" class="form-control mt-1 block w-full">
+                        <option value="">All Categories</option>
+                        <option value="bath">Bath</option>
+                        <option value="body">Body</option>
+                        <option value="hair">Hair</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4">
+                    <label for="price" class="block font-medium">Price</label>
+                    <input type="number" id="price" name="price" class="form-control mt-1 block w-full" placeholder="Max Price">
+                </div>
+                <button type="submit" class="btn btn-primary block w-full">Apply Filters</button>
+            </form>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="w-3/4 pl-4">
+            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for product in products %}
+                <div class="bg-white shadow-md rounded-lg overflow-hidden h-96 flex flex-col justify-between">
+                    <div class="relative h-2/3 bg-gray-200">
+                        <img src="{{ url_for('static', filename=product.image_filename) }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 flex flex-col items-center text-center">
+                        <h5 class="font-semibold text-lg">{{ product.name }}</h5>
+                        <p class="text-gray-600">{{ product.description }}</p>
+                        <p class="text-pink-500 text-lg font-bold mt-2">${{ "%.2f"|format(product.price) }}</p>
+                        <button class="mt-4 bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
