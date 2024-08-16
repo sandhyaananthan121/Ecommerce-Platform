@@ -22,4 +22,8 @@ PyCharm setup
 2. push - clone - commit and push
 3. pull - git - pull
 
+4. Website Wireframe: Home Page:
+5. ![image](https://github.com/user-attachments/assets/78ae2a48-8b13-4e59-a24d-718200ffb067)
+
+
 
