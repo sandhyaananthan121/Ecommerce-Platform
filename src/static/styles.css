@@ -11,10 +11,6 @@ body {
     flex-direction: column;
     background-color: #f3f4f6; /* Tailwind's gray-100 */
 }
-.container{
-    margin: 0;
-    padding: 0;
-}
 /* Footer */
 .footer {
     margin-top: auto;
